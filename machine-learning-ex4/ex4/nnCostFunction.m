@@ -79,14 +79,21 @@ for i = 1:m
 end
 J = J / m;
 
+reg1 = 0;
+for j = 1:hidden_layer_size
+  for k = 1:input_layer_size
+    reg1 += Theta1(j, k + 1) ^ 2;
+  end
+end
 
+reg2 = 0;
+for j = 1:num_labels
+  for k = 1:hidden_layer_size
+    reg2 += Theta2(j, k + 1) ^ 2;
+  end
+end
 
-
-
-
-
-
-
+J += (lambda / (2 * m)) * (reg1 + reg2);
 
 
 
